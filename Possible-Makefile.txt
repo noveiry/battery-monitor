@@ -1,0 +1,22 @@
+PROJECT=battery-fleet
+
+build:
+	docker compose build
+
+up:
+	docker compose up
+
+down:
+	docker compose down
+
+logs:
+	docker compose logs -f
+
+scale10:
+	docker compose up --scale simulator=10
+
+scale50:
+	docker compose up --scale simulator=50
+
+scale100:
+	docker compose up --scale simulator=100

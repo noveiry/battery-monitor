@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telemetry
+  namespace: battery
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: telemetry
+
+  template:
+    metadata:
+      labels:
+        app: telemetry
+
+    spec:
+      containers:
+        - name: telemetry
+
+          image: battery-telemetry:1.0
+
+          imagePullPolicy: Never
+
+          envFrom:
+            - configMapRef:
+                name: battery-config
+
+          ports:
+            - containerPort: 8080
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telemetry
+  namespace: battery
+
+spec:
+  selector:
+    app: telemetry
+
+  ports:
+    - port: 8080
+      targetPort: 8080

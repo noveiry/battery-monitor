@@ -1,0 +1,51 @@
+services:
+
+  nats:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+
+  telemetry:
+    build:
+      context: .
+      dockerfile: services/telemetry/Dockerfile
+    environment:
+      NATS_URL: nats://nats:4222
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nats
+
+  alerts:
+    build:
+      context: .
+      dockerfile: services/alerts/Dockerfile
+    environment:
+      NATS_URL: nats://nats:4222
+    ports:
+      - "8081:8081"
+    depends_on:
+      - nats
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: services/dashboard/Dockerfile
+    environment:
+      TELEMETRY_URL: http://telemetry:8080
+      ALERT_URL: http://alerts:8081
+    ports:
+      - "8082:8082"
+    depends_on:
+      - telemetry
+      - alerts
+
+  simulator:
+    build:
+      context: .
+      dockerfile: services/simulator/Dockerfile
+    environment:
+      NATS_URL: nats://nats:4222
+    depends_on:
+      - nats

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: battery
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: dashboard
+
+  template:
+    metadata:
+      labels:
+        app: dashboard
+
+    spec:
+      containers:
+        - name: dashboard
+
+          image: battery-dashboard:1.0
+
+          imagePullPolicy: Never
+
+          envFrom:
+            - configMapRef:
+                name: battery-config
+
+          ports:
+            - containerPort: 8082
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8082
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: battery
+
+spec:
+  selector:
+    app: dashboard
+
+  ports:
+    - port: 8082
+      targetPort: 8082
