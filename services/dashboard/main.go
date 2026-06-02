@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"os"
 
-	"dashboard/internal"
+	"battery-monitor/services/dashboard/internal"
 
-	"battery-fleet-monitor/pkg/logger"
+	"battery-monitor/pkg/logger"
 )
 
 func main() {

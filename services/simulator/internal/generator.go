@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"battery-fleet-monitor/pkg/models"
+	"battery-monitor/pkg/models"
 )
 
 type Generator struct {

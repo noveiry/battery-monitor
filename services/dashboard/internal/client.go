@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"battery-fleet-monitor/pkg/models"
+	"battery-monitor/pkg/models"
 )
 
 type Client struct {

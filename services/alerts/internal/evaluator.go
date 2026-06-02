@@ -3,7 +3,7 @@ package internal
 import (
 	"time"
 
-	"battery-fleet-monitor/pkg/models"
+	"battery-monitor/pkg/models"
 )
 
 func Evaluate(

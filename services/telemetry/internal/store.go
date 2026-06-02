@@ -17,19 +17,14 @@ func NewStore() *Store {
 	}
 }
 
-func (s *Store) Upsert(
-	b models.BatteryTelemetry,
-) {
+func (s *Store) Upsert(b models.BatteryTelemetry) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
 	s.batteries[b.ID] = b
 }
 
-func (s *Store) Get(
-	id string,
-) (models.BatteryTelemetry, bool) {
-
+func (s *Store) Get(id string) (models.BatteryTelemetry, bool) {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
@@ -39,7 +34,6 @@ func (s *Store) Get(
 }
 
 func (s *Store) List() []models.BatteryTelemetry {
-
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
@@ -49,8 +43,8 @@ func (s *Store) List() []models.BatteryTelemetry {
 		len(s.batteries),
 	)
 
-	for _, b := range s.batteries {
-		result = append(result, b)
+	for _, battery := range s.batteries {
+		result = append(result, battery)
 	}
 
 	return result
@@ -77,7 +71,6 @@ func (s *Store) Stats() FleetStats {
 	var tempSum float64
 
 	for _, b := range s.batteries {
-
 		chargeSum += b.Charge
 		healthSum += b.Health
 		tempSum += b.Temperature

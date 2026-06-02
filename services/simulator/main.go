@@ -6,10 +6,10 @@ import (
 	"os"
 	"time"
 
-	"battery-fleet-monitor/pkg/logger"
-	"battery-fleet-monitor/pkg/natsx"
+	"battery-monitor/pkg/logger"
+	"battery-monitor/pkg/natsx"
 
-	"simulator/internal"
+	"battery-monitor/services/simulator/internal"
 )
 
 func main() {

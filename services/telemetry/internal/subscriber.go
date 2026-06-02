@@ -29,7 +29,7 @@ func StartSubscriber(
 				event.ID,
 				"charge",
 				event.Charge,
-				"temp",
+				"temperature",
 				event.Temperature,
 			)
 		},

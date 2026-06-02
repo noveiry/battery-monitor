@@ -1,14 +1,12 @@
 package main
 
 import (
+	"battery-monitor/pkg/logger"
+	"battery-monitor/pkg/natsx"
+	"battery-monitor/services/telemetry/internal"
 	"log"
 	"net/http"
 	"os"
-
-	"battery-fleet-monitor/pkg/logger"
-	"battery-fleet-monitor/pkg/natsx"
-
-	"telemetry/internal"
 )
 
 func main() {

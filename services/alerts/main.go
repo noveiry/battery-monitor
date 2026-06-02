@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"os"
 
-	"alerts/internal"
+	"battery-monitor/services/alerts/internal"
 
-	"battery-fleet-monitor/pkg/logger"
-	"battery-fleet-monitor/pkg/natsx"
+	"battery-monitor/pkg/logger"
+	"battery-monitor/pkg/natsx"
 )
 
 func main() {

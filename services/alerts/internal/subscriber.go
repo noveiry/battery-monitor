@@ -3,9 +3,9 @@ package internal
 import (
 	"log/slog"
 
-	"battery-fleet-monitor/pkg/events"
-	"battery-fleet-monitor/pkg/models"
-	"battery-fleet-monitor/pkg/natsx"
+	"battery-monitor/pkg/events"
+	"battery-monitor/pkg/models"
+	"battery-monitor/pkg/natsx"
 
 	"github.com/nats-io/nats.go"
 )

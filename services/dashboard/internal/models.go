@@ -1,6 +1,6 @@
 package internal
 
-import "battery-fleet-monitor/pkg/models"
+import "battery-monitor/pkg/models"
 
 type FleetResponse struct {
 	Stats     any                       `json:"stats"`

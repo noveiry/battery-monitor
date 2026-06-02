@@ -3,7 +3,7 @@ package internal
 import (
 	"sync"
 
-	"battery-fleet-monitor/pkg/models"
+	"battery-monitor/pkg/models"
 )
 
 type Store struct {
